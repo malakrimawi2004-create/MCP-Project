@@ -1,2 +1,2 @@
 # MCP-Project
-Hi, this is my Academy MCP project.
+Hi, this is my MCP project.
