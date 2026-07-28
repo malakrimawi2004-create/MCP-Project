@@ -28,5 +28,5 @@ A student says -> Add my exam schedule for this semester. The AI uses the add_ta
 * The AI can generate a basic study plan from saved tasks.
 
 ## Risks
-Risk : I may not finish all advanced tools before Demo Day.
+Risk : I may not finish all tools before Demo Day.
 Mitigation: I will complete all P0 tools first.
