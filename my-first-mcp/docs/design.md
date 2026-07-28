@@ -10,9 +10,12 @@ A student says -> Add my exam schedule for this semester. The AI uses the add_ta
 |-----------|-------------|--------|----------------|----------|
 | add_task | Add a new task or exam | title, date, priority | Task object | P0 |
 | list_tasks | Display all saved tasks | optional filter | List of tasks | P0 |
-| delete_task | Remove a task | task_id | delete the task in list | P0 |
-| update_task | Edit an existing task | task_id, new values | Updated task | P1 |
-| generate_study_plan | Create a study plan based on exams | task list, exam dates | Study plan | P1 |
+| complete_task | Mark an existing task as completed | task_id | Updated task | P0 |
+| delete_task | Remove a task | task_id | delete the task in list | P1 |
+| search_tasks | Search tasks by title keyword | keyword | List of matching tasks | P1 |
+| sort_tasks_by_priority | Sort tasks from high to low priority | none | Sorted list of tasks | P1 |
+| update_task | Edit an existing task | task_id, new values | Updated task | P2 |
+| generate_study_plan | Create a study plan based on exams | task list, exam dates | Study plan | P2 |
 
 ## Out of Scope
 * User authentication and login system.
