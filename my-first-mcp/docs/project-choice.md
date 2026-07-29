@@ -2,7 +2,7 @@
  NextFlows Academy: https://nextflows.ai/
 
  ## The idea
- I am building a To-Do List MCP for students so that they can manage and track their daily study tasks directly through an AI assistant.
+ we are building a To-Do List MCP for students so that they can manage and track their daily study tasks directly through an AI assistant.
  
  ## The repo url 
   we are working on hiba's github  ->  https://github.com/hibat972-tech/mcp-academy-project.git
