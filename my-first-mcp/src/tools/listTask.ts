@@ -1,28 +1,63 @@
 import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
-
 import { listTasksInputSchema } from "../schemas/listTask.js";
+import type { z } from "zod/v4";
+import {
+  loadTodos,
+  filterAndSortOpenTasks,
+} from "../lib/tasks.js";
 
-/** Week 2 stub — list tasks (P0 candidate). */
-export function registerListTaskTool(server: McpServer): void {
+type ListTasksInput = z.infer<typeof listTasksInputSchema>;
+
+export function registerListTasks(server: McpServer): void {
   server.registerTool(
     "list_tasks",
     {
       description:
-        "List all open tasks, optionally limiting the number of returned tasks.",
+        "List open tasks sorted by deadline and priority, with an optional deadline filter and limit.",
       inputSchema: listTasksInputSchema,
     },
-    async ({ limit }) => {
+    async (input: ListTasksInput) => {
+      let tasks;
+
+      try {
+        tasks = await loadTodos();
+      } catch (err) {
+        return {
+          content: [
+            {
+              type: "text",
+              text: JSON.stringify(
+                {
+                  ok: false,
+                  error:
+                    err instanceof Error ? err.message : "Unknown error",
+                },
+                null,
+                2,
+              ),
+            },
+          ],
+          isError: true,
+        };
+      }
+
+      const filteredAndSorted = filterAndSortOpenTasks(
+        tasks,
+        input.deadline,
+      );
+
+      const limited = input.limit
+        ? filteredAndSorted.slice(0, input.limit)
+        : filteredAndSorted;
+
       return {
         content: [
           {
             type: "text",
             text: JSON.stringify(
               {
-                stub: true,
-                tool: "list_tasks",
-                limit,
-                message:
-                  "Replace this stub in Week 3 with real task listing.",
+                tasks: limited,
+                count: limited.length,
               },
               null,
               2,
